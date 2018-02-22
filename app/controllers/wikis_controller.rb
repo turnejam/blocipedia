@@ -12,7 +12,7 @@ class WikisController < ApplicationController
   end
 
   def create
-    @wiki = Wiki.create(wiki_params)
+    @wiki = Wiki.new
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
     @wiki.private = params[:wiki][:private]
@@ -27,6 +27,10 @@ class WikisController < ApplicationController
   end
 
   def edit
+    @wiki = Wiki.find(params[:id])
+  end
+
+  def update
     @wiki = Wiki.find(params[:id])
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
