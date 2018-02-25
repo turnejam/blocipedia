@@ -6,7 +6,7 @@
         <h4> <%= link_to wiki.title, wiki %> </h4>
       <% end %>
     </div>
-    <% if user_is_authorized_to_create? %>
+    <% if policy(@wikis).create? %>
     <div class='col-md-4'>
       <%= link_to "New Wiki", new_wiki_path, class: 'btn btn-success' %>
     </div>
