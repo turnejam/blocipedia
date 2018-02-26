@@ -9,4 +9,10 @@ class User < ApplicationRecord
   after_initialize { self.role ||= :member }
 
   enum role: [:member, :admin, :premium]
+
+  def downgrade_wikis
+    self.wikis.each do |wiki|
+      wiki.make_public
+    end
+  end
 end

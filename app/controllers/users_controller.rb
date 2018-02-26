@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     @user.member!
+    @user.downgrade_wikis
 
 
     if @user.save
