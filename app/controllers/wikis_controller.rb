@@ -1,6 +1,6 @@
 class WikisController < ApplicationController
   def index
-    @wikis = Wiki.all
+    @wikis = policy_scope(Wiki)
   end
 
   def show
@@ -9,6 +9,7 @@ class WikisController < ApplicationController
 
   def new
     @wiki = Wiki.new
+    @users = User.where.not(id: current_user.id)
     authorize @wiki
   end
 
@@ -28,6 +29,7 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
+    @users = User.where.not(id: current_user.id)
     authorize @wiki
   end
 

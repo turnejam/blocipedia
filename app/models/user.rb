@@ -4,11 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :wikis
+  has_many :wikis, dependent: :destroy
+  has_many :collaborators
+  has_many :wiki_collaborations, through: :collaborators, source: :wiki
 
   after_initialize { self.role ||= :member }
 
-  enum role: [:member, :admin, :premium]
+  enum role: [:member, :premium, :admin]
 
   def downgrade_wikis
     self.wikis.each do |wiki|

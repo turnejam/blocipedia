@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :wikis
   resources :charges, only: [:new, :create]
   resources :users, only: [:edit, :update]
+  resources :collaborators, only: [:create, :destroy]
 
   post 'users/update'
 
