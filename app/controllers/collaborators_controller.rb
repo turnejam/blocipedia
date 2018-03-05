@@ -12,12 +12,12 @@ class CollaboratorsController < ApplicationController
       redirect_to edit_wiki_path(@wiki)
     end
   end
-  
+
   def destroy
     @wiki = Wiki.find(params[:wiki_id])
-    @collaboration = Collaborator.find(params[:id])
+    @collaborator = Collaborator.find(params[:id])
 
-    if @collaboration.destroy
+    if @collaborator.destroy
       flash[:notice] = "You have successfully removed a collaborator."
       redirect_to @wiki
     else
